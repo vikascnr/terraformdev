@@ -1,5 +1,5 @@
 variable "resource_group" {
-  default = "vikastfrg"
+  default = "VikasRg"
 
 }
 variable "location" {
