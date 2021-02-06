@@ -7,5 +7,5 @@ variable "location" {
 }
 
 variable "virtual_network" {
-  default = "Vnet1"
+  default = "Vnet2"
 }
