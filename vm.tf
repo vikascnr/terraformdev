@@ -11,7 +11,7 @@ resource "azurerm_network_interface" "devtestlb" {
 }
 
 resource "azurerm_windows_virtual_machine" "devtestlb" {
-  name                = "uatwvm"
+  name                = "devvm"
   resource_group_name = var.resource_group
   location            = var.location
   size                = "Standard_F2"
