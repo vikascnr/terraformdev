@@ -1,68 +1,14 @@
-
-
-name: run main.py
-
 on:
-  workflow_dispatch:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '33 5 * * *'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: tpc38408bg0610
     steps:
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content
 
-      - name: setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10' # install the python version needed
-
-      - name: install python packages
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
       - name: execute py script # run main.py
-        run: python main.py
-
-# name: Deploy to DEV
-
-# on:
-#   workflow_dispatch:
-
-# jobs:
-#   vmstart:
-#     runs-on: ubuntu
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: setup python
-#         uses: actions/setup-python@v4
-#         with:
-#           python-version: '3.10' # install the python version needed
-#       - name: execute py script # run main.py
-#         run: python cron.py
-
-
-
-
-# name: poc-workflow
-
-# on:
-#   workflow_dispatch:
-#   push:
-#     branches:
-#       - 'WHFI-376-establish-cron-job'
-# jobs:
-#   vmstart:
-#     runs-on: ubuntu
-#     steps:
-#       - name: actions/checkout
-#       - uses: actions/checkout@v2
-
-#       - name: setup python
-#         uses: actions/setup-python@v4
-#         with:
-#           python-version: '3.10' # install the python version needed
-
-#       - name: execute py script # run main.py
-#         run: python cron.py
+        run: python cron-daily.py
