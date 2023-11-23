@@ -1,19 +1,27 @@
 import requests
 from datetime import datetime
-import datetime
 import time
 
-while True:
-    current_time = datetime.datetime.now().time()
-    start_time = datetime.time(6, 20)
-    end_time = datetime.time(6, 32)
+create_article = requests.get("/api/create-article-list")
+revalidate = requests.get("/api/revalidate/invoke/all")
 
-    if start_time <= current_time <= end_time:
-        print("It's between 4:00 AM and 4:30 AM. Waiting...")
-        time.sleep(60)  # Wait for 60 seconds and then check again
-    else:
-        print("It's not between 4:00 AM and 4:30 AM.")
-        
-        break  # Exit the loop if the condition is not met
+curr_time = datetime.now()
+#HOUR        = datetime.now().hour   # the current hour
+#MINUTE      = datetime.now().minute
+HOUR=4
+MINUTE=29
 
-print(current_time)
+print(type(HOUR))
+print(HOUR)
+print(MINUTE)
+
+while (HOUR==4 and MINUTE <= 30):
+    print("Going to sleep for 60 seconds")
+    time.sleep(60)
+
+schedular_start = requests.get("/api/scheduler/start")
+
+
+print(create_article.text)
+print(revalidate.text)
+print(schedular_start.text)
